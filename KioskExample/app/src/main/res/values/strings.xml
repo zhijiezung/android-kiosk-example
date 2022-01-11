@@ -9,6 +9,12 @@
     <string name="exit_kiosk_mode">Exit Kiosk Mode</string>
     <string name="kiosk_not_permitted">Kiosk Mode not permitted</string>
     <string name="not_device_admin">This app is not a device admin!</string>
+    <string name="device_admin">This app is a device admin!</string>
     <string name="not_device_owner">This app is not the device owner!</string>
-    <string name="check_update">Check for Update</string>
+    <string name="device_owner">This app is the device owner!</string>
+    <string name="check_device_owner_app">Check For Device Owner App</string>
+    <string name="check_admin_active">Check For Admin Active</string>
+    <string name="clear_device_owner_app">Clear Device Owner App</string>
+    <string name="enable_device_manager">Enable Device Manager</string>
+    <string name="disable_device_manager">Disable Device Manager</string>
 </resources>

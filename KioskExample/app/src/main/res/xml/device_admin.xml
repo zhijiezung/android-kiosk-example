@@ -1,2 +1,25 @@
-<device-admin>
+<?xml version="1.0" encoding="utf-8"?>
+<device-admin xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-policies>
+        <!-- 限制密码类型 -->
+        <limit-password />
+        <!-- 监控登录尝试 -->
+        <watch-login />
+        <!-- 重置密码 -->
+        <reset-password />
+        <!--锁屏 -->
+        <force-lock />
+        <!-- 恢复出厂设置 -->
+        <wipe-data />
+        <!--禁用相机-->
+        <disable-camera />
+
+        <disable-keyguard-features />
+
+        <set-global-proxy />
+
+        <!-- 设置锁屏密码的有效期 -->
+        <expire-password />
+
+    </uses-policies>
 </device-admin>

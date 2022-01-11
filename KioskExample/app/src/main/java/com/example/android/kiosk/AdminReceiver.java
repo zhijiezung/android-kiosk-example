@@ -1,10 +1,13 @@
-package com.sureshjoshi.android.kioskexample;
+package com.example.android.kiosk;
 
 import android.app.admin.DeviceAdminReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
 
+/**
+ * The app requires device owner privileges
+ */
 public class AdminReceiver extends DeviceAdminReceiver {
 
     @Override
@@ -13,13 +16,13 @@ public class AdminReceiver extends DeviceAdminReceiver {
     }
 
     @Override
-    public CharSequence onDisableRequested(Context context, Intent intent) {
-        return context.getString(R.string.device_admin_warning);
+    public void onDisabled(Context context, Intent intent) {
+        Toast.makeText(context, context.getString(R.string.device_admin_disabled), Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void onDisabled(Context context, Intent intent) {
-        Toast.makeText(context, context.getString(R.string.device_admin_disabled), Toast.LENGTH_SHORT).show();
+    public CharSequence onDisableRequested(Context context, Intent intent) {
+        return context.getString(R.string.device_admin_warning);
     }
 
     @Override

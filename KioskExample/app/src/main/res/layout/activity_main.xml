@@ -12,7 +12,7 @@
         android:id="@+id/layout_buttons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
         <Button
             android:onClick="toggleKioskMode"
@@ -22,11 +22,55 @@
             android:text="@string/enter_kiosk_mode" />
 
         <Button
-            android:onClick="checkForUpdate"
-            android:id="@+id/button_check_update"
+            android:onClick="toggleApplicationHidden"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/check_update" />
+            android:text="Toggle Application Hidden" />
+
+        <Button
+            android:onClick="setDeviceOwnerApp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Set Device Owner (adb)" />
+
+        <Button
+            android:onClick="removeActiveAdmin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Remove Active Admin (adb)" />
+
+        <Button
+            android:onClick="checkForDeviceOwnerApp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/check_device_owner_app" />
+
+        <Button
+            android:onClick="checkForAdminActive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/check_admin_active" />
+
+        <Button
+            android:onClick="clearDeviceOwnerApp"
+            android:id="@+id/button_clear_device_owner_app"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/clear_device_owner_app" />
+
+        <Button
+            android:onClick="enableDeviceManager"
+            android:id="@+id/button_enable_device_manager"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/enable_device_manager" />
+
+        <Button
+            android:onClick="disableDeviceManager"
+            android:id="@+id/button_disable_device_manager"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/disable_device_manager" />
     </LinearLayout>
 
 </RelativeLayout>
