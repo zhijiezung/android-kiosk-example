@@ -15,22 +15,18 @@
         android:orientation="horizontal">
 
         <Button
+            android:onClick="toggleKioskMode"
             android:id="@+id/button_toggle_kiosk"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/enter_kiosk_mode" />
 
         <Button
+            android:onClick="checkForUpdate"
             android:id="@+id/button_check_update"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/check_update" />
     </LinearLayout>
-
-    <WebView
-        android:id="@+id/webview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/layout_buttons"/>
 
 </RelativeLayout>

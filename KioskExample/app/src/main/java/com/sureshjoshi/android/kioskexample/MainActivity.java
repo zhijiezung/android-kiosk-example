@@ -6,46 +6,18 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
-import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.Toast;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
-
 public class MainActivity extends Activity {
 
-    @Bind(R.id.button_toggle_kiosk)
     public Button mButton;
 
-    @OnClick(R.id.button_toggle_kiosk)
-    public void toggleKioskMode() {
+    public void toggleKioskMode(View view) {
         enableKioskMode(!mIsKioskEnabled);
     }
 
-    @OnClick(R.id.button_check_update)
-    public void checkForUpdate() {
-
-    }
-
-
-    @Bind(R.id.webview)
-    public WebView mWebView;
-
-    private View mDecorView;
-    private DevicePolicyManager mDpm;
-    private boolean mIsKioskEnabled = false;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
-
-        ComponentName deviceAdmin = new ComponentName(this, AdminReceiver.class);
-        mDpm = (DevicePolicyManager) getSystemService(Context.DEVICE_POLICY_SERVICE);
+    public void checkForUpdate(View view) {
         if (!mDpm.isAdminActive(deviceAdmin)) {
             Toast.makeText(this, getString(R.string.not_device_admin), Toast.LENGTH_SHORT).show();
         }
@@ -55,10 +27,24 @@ public class MainActivity extends Activity {
         } else {
             Toast.makeText(this, getString(R.string.not_device_owner), Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private View mDecorView;
+    private DevicePolicyManager mDpm;
+    ComponentName deviceAdmin;
+    private boolean mIsKioskEnabled = false;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        mButton = findViewById(R.id.button_toggle_kiosk);
 
         mDecorView = getWindow().getDecorView();
 
-        mWebView.loadUrl("http://www.vicarasolutions.com/");
+        deviceAdmin = new ComponentName(this, AdminReceiver.class);
+        mDpm = (DevicePolicyManager) getSystemService(Context.DEVICE_POLICY_SERVICE);
     }
 
     @Override
@@ -97,7 +83,7 @@ public class MainActivity extends Activity {
                 mButton.setText(getString(R.string.enter_kiosk_mode));
             }
         } catch (Exception e) {
-            // TODO: Log and handle appropriately
+            e.printStackTrace();
         }
     }
 }
