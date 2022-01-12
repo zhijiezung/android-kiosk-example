@@ -27,22 +27,6 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-
-    signingConfigs {
-        // A6、A10
-        debug {
-            storeFile file('../platform_RG360.keystore')
-            storePassword 'android'
-            keyAlias 'androidreleasekey'
-            keyPassword 'android'
-        }
-        release {
-            storeFile file('../platform_RG360.keystore')
-            storePassword 'android'
-            keyAlias 'androidreleasekey'
-            keyPassword 'android'
-        }
-    }
 }
 
 dependencies {

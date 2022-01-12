@@ -5,11 +5,14 @@ import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 
 import com.example.android.kiosk.utils.RuntimeUtil;
 import com.tbruyelle.rxpermissions2.RxPermissions;
@@ -273,5 +276,55 @@ public class MainActivity extends Activity {
             Toast.makeText(getBaseContext(), "请先激活设备", Toast.LENGTH_SHORT).show();
         }
         return -1;
+    }
+
+    /**
+     * 禁用状态栏
+     *
+     * @param disabled
+     * @return false if attempting to disable the status bar failed. true otherwise.
+     */
+    public boolean setStatusBarDisabled(boolean disabled) {
+        boolean result = false;
+        if (mDpm.isAdminActive(deviceAdmin)) {
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+                result = mDpm.setStatusBarDisabled(deviceAdmin, disabled);
+                Log.d(TAG, "setStatusBarDisabled: result = " + result);
+            }
+        } else {
+            Toast.makeText(getBaseContext(), "请先激活设备", Toast.LENGTH_SHORT).show();
+        }
+        return result;
+    }
+
+    /**
+     * 单一应用权限设置
+     *
+     * @return whether the permission was successfully granted or revoked.
+     */
+    public boolean setPermissionGrantState(@NonNull String packageName, @NonNull String permission, int grantState) {
+        boolean result = false;
+        if (mDpm.isAdminActive(deviceAdmin)) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                result = mDpm.setPermissionGrantState(deviceAdmin, packageName, permission, grantState);
+                Log.d(TAG, "setStatusBarDisabled: result = " + result);
+            }
+        } else {
+            Toast.makeText(getBaseContext(), "请先激活设备", Toast.LENGTH_SHORT).show();
+        }
+        return result;
+    }
+
+    /**
+     * 全局动态权限设置
+     */
+    public void setPermissionGrantState(int policy) {
+        if (mDpm.isAdminActive(deviceAdmin)) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                mDpm.setPermissionPolicy(deviceAdmin, policy);
+            }
+        } else {
+            Toast.makeText(getBaseContext(), "请先激活设备", Toast.LENGTH_SHORT).show();
+        }
     }
 }
